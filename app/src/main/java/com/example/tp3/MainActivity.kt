@@ -20,21 +20,23 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
         binding.setButton.setOnClickListener { view -> this.setTime(view) }
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment, FragmentClock(),null)
             .addToBackStack(null)
             .commit()
-
+        setContentView(binding.root)
         binding.setButton.setOnLongClickListener {
             actionMode = this@MainActivity.startActionMode(this@MainActivity)!!
             return@setOnLongClickListener true
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        print("hiiiii")
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
         return true
